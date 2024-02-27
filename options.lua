@@ -5,7 +5,7 @@ local config = {
         spell = false,
         signcolumn = "auto",
         wrap = false,
-        guifont = "MesloLGS Nerd Font Mono:h12",
+        -- guifont = "MesloLGS Nerd Font Mono:h12",
     },
     g = {
         mapleader = " ",
@@ -16,7 +16,7 @@ local config = {
         icons_enabled = true,
         ui_notifications_enabled = true,
         resession_enabled = false,
-        transparency = 0.8,
+        transparency = 1.,
         neovide_input_macos_alt_is_meta = true
     }
 }
