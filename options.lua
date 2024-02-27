@@ -5,7 +5,6 @@ local config = {
         spell = false,
         signcolumn = "auto",
         wrap = false,
-        -- guifont = "MesloLGS Nerd Font Mono:h12",
     },
     g = {
         mapleader = " ",
@@ -16,21 +15,13 @@ local config = {
         icons_enabled = true,
         ui_notifications_enabled = true,
         resession_enabled = false,
-        transparency = 1.,
+        transparency = 0.5,
         neovide_input_macos_alt_is_meta = true
     }
 }
 
-local alpha = function()
-    return string.format("%x", math.floor(255 * config.g.transparency or 0.6))
-end
-
-
-local color = "#0f1117" .. alpha()
-
-config.g.neovide_background_color = color
 config.g.neovide_window_blurred = true
-config.g.neovide_transparency = 0.6
+config.g.neovide_transparency = 0.5
 
 return config
 

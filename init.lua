@@ -79,20 +79,8 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.keymap.set({'n', 'v'}, '<D-p>', function() require("knap").process_once() end)
     -- Set up custom filetypes
-    local function copy(lines, _)
-      require('osc52').copy(table.concat(lines, '\n'))
-    end
-
-    local function paste()
-      return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
-    end
-
-    vim.g.clipboard = {
-      name = 'osc52',
-      copy = {['+'] = copy, ['*'] = copy},
-      paste = {['+'] = paste, ['*'] = paste},
-    }
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",
