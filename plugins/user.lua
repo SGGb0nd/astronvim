@@ -9,14 +9,18 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+  'ojroques/nvim-osc52',
   {
-    "VonHeikemen/fine-cmdline.nvim",
+   "amitds1997/remote-nvim.nvim",
     lazy = false,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require('fine-cmdline').setup()
-    end,
-  }
+   version = "*", -- This keeps it pinned to semantic releases
+   dependencies = {
+       "nvim-lua/plenary.nvim",
+       "MunifTanjim/nui.nvim",
+       "rcarriga/nvim-notify",
+       -- This would be an optional dependency eventually
+       "nvim-telescope/telescope.nvim",
+   },
+   config = true, -- This calls the default setup(); make sure to call it
+}
 }

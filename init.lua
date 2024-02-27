@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "catppuccin-mocha",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -34,8 +34,9 @@ return {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
-          "js*",
-          "ts*",
+          "javascript",
+          "ts",
+          "rust",
           "lua",
           "json",
           "html",
@@ -79,6 +80,19 @@ return {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     -- Set up custom filetypes
+    local function copy(lines, _)
+      require('osc52').copy(table.concat(lines, '\n'))
+    end
+
+    local function paste()
+      return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+    end
+
+    vim.g.clipboard = {
+      name = 'osc52',
+      copy = {['+'] = copy, ['*'] = copy},
+      paste = {['+'] = paste, ['*'] = paste},
+    }
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",
