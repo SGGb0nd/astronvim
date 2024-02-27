@@ -5,6 +5,7 @@ local config = {
         spell = false,
         signcolumn = "auto",
         wrap = false,
+        autochdir = true,
     },
     g = {
         mapleader = " ",

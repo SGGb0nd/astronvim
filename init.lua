@@ -94,13 +94,16 @@ return {
       paste = {['+'] = paste, ['*'] = paste},
     }
 
-    vim.api.nvim_create_autocmd('VimEnter', {
+    vim.api.nvim_create_autocmd('User', {
       desc = 'Auto select virtualenv Nvim open',
-      pattern = '*',
+      pattern = 'AstroFile',
       callback = function()
         local venv = vim.fn.findfile('pyproject.toml', vim.fn.getcwd() .. ';')
         if venv ~= '' then
+          print('Found pyproject.toml')
           require('venv-selector').retrieve_from_cache()
+        else
+          print('No pyproject.toml found')
         end
       end,
       once = true,
