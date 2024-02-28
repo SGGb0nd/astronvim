@@ -22,7 +22,7 @@ local config = {
 }
 
 config.g.neovide_window_blurred = true
-config.g.neovide_transparency = 0.5
+config.g.neovide_transparency = 0.7
 
 return config
 
