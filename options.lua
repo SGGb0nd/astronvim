@@ -23,6 +23,8 @@ local config = {
 
 config.g.neovide_window_blurred = true
 config.g.neovide_transparency = 0.5
+config.g.neovide_remember_window_size = true
+config.g.neovide_confirm_quit = true
 
 return config
 
