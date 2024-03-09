@@ -6,7 +6,11 @@ return {
   { import = "astrocommunity.utility.noice-nvim"},
   { import = "astrocommunity.completion.cmp-cmdline"},
   { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
+  { import = "astrocommunity.colorscheme.oxocarbon-nvim"},
+  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.color.transparent-nvim" },
+  { import = "astrocommunity.color.headlines-nvim" },
   { -- further customize the options set by the community
     "catppuccin",
     opts = {

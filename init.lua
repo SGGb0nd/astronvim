@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "catppuccin-mocha",
+  colorscheme = "tokyonight-storm",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -79,35 +79,23 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.keymap.set({'n', 'v'}, '<D-p>', function() require("knap").process_once() end)
+  if vim.g.neovide then
+    vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+    vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+    vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+    vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+    vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+    vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+  end
+
+  -- Allow clipboard copy paste in neovim
+  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
     -- Set up custom filetypes
-    local function copy(lines, _)
-      require('osc52').copy(table.concat(lines, '\n'))
-    end
-
-    local function paste()
-      return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
-    end
-
-    vim.g.clipboard = {
-      name = 'osc52',
-      copy = {['+'] = copy, ['*'] = copy},
-      paste = {['+'] = paste, ['*'] = paste},
-    }
-
-    vim.api.nvim_create_autocmd('User', {
-      desc = 'Auto select virtualenv Nvim open',
-      pattern = 'AstroFile',
-      callback = function()
-        local venv = vim.fn.findfile('pyproject.toml', vim.fn.getcwd() .. ';')
-        if venv ~= '' then
-          print('Found pyproject.toml')
-          require('venv-selector').retrieve_from_cache()
-        else
-          print('No pyproject.toml found')
-        end
-      end,
-      once = true,
-    })
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",
